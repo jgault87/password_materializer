@@ -12,6 +12,7 @@ var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q'
 var specialChars = ['!','@','#','$','%','^','&','*','(',')','{','}','[',']','=','<','>','/','?',':',';','~'];
 var numChars = ['0','1','2','3','4','5','6','7','8','9'];
 
+//main function
 
 function generatePassword() {
   var password = ""
@@ -23,6 +24,8 @@ function generatePassword() {
   // console.log(parseInt(prompt(
   //   "Enter Password Character Length 8-128 characters"
   // )));
+
+ //series of if statements which push user input into new array
 
   if (!userLength || userLength < 8 || userLength > 128) {
     window.alert("You must select a length between 8 and 128 characters.");
@@ -49,16 +52,24 @@ function generatePassword() {
     choices.push(numChars)
   }
   
+  // for-loop which cycles through each user input
+
   for (var i = 0; i < userLength; i++) {
     password += getChar(choices[Math.floor(Math.random() * choices.length)])
   }
+  
   console.log(password);
-
+  
+  // write password to field
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password; 
   
 }
 
+//new dynamic array based on user selected variables
 function getChar(arr) {
   return arr[Math.floor(Math.random() * arr.length)]
+
 }
 
   // const randomFunction = {
@@ -91,14 +102,14 @@ function getChar(arr) {
   // Assignment Code
   var generateBtn = document.querySelector("#generate");
 
-  // Write password to the #password input
-  function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
+  // // Write password to the #password input
+  // function writePassword() {
+  //   var password = generatePassword();
+    // var passwordText = document.querySelector("#password");
 
-    passwordText.value = password; }
+    // passwordText.value = password; 
   
 
   // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
+  generateBtn.addEventListener("click", generatePassword);
 
